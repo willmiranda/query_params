@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["willmiranda@gmail.com"]
 
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "https://github.com/willmiranda/query-params"
+    spec.metadata['allowed_push_host'] = "https://rubygems.org"
   end
 
   spec.summary       = %q{Format URL parameters like a query.}
