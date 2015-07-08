@@ -27,8 +27,8 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-puts QueryParams.build_uri(base_uri: "http://domain.com/search", q: "Mark", conditions: ["age <= 18", "type = 1"])
-# http://domain.com/search?q=Mark&filters=age::le(18)|type::eq(1)
+QueryParams.build_uri(base_uri: "http://domain.com/search", q: "Mark", conditions: ["age <= 18", "type = 1"])
+# => "http://domain.com/search?q=Mark&filters=age::le(18)|type::eq(1)"
 ```
 
 ## Contributing
