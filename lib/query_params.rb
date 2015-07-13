@@ -29,7 +29,7 @@ module URI
 
     def self.build_uri(options = {})
       queryParams = QueryParams.new(options[:base_uri])
-      Condition.build_uri(queryParams, options[:conditions]) if options[:conditions]
+      Condition.build_uri(queryParams, options[:filters]) if options[:filters]
       queryParams.full_text_search(options[:q]) if options[:q]
       queryParams.build_uri()
     end
