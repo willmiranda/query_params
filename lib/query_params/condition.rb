@@ -1,21 +1,21 @@
 require "query_params"
 
-class Condition
+module Condition
 
   OPERATORS = { "=" => "eq", ">=" => "ge", "<=" => "le" }
 
-  def self.build_uri(queryParams, conditions)
+  def set_conditions(conditions)
     
     if conditions.kind_of?(Array)
       conditions.each do |condition|
-        set_query(queryParams, condition)
+        set_query(condition)
       end
     else
-      set_query(queryParams, conditions)
+      set_query(conditions)
     end
   end
 
-  def self.set_query(queryParams, condition)
+  def set_query(condition)
     tokens = condition.split(" ")
     
     raise(ArgumentError, "Invalid condition: #{condition}. Send operator separate for space.") if tokens.size < 3
@@ -26,7 +26,7 @@ class Condition
     
     raise(ArgumentError, "Invalid operator. Accepted tokens: #{OPERATORS.values}") if OPERATORS[operator].nil?
 
-    queryParams.send(OPERATORS[operator], field, value)
+    self.send(OPERATORS[operator], field, value)
   end
 
 end

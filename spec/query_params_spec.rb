@@ -78,5 +78,20 @@ describe QueryParams do
     it 'full_text_search on hash' do
       expect(URI::QueryParams.build_uri(q: "James")).to eq "q=James"
     end
+
+    it 'filters is required' do
+      expect{ URI::QueryParams.filters("") }.to raise_error(ArgumentError)
+      expect{ URI::QueryParams.filters(nil) }.to raise_error(ArgumentError)
+    end
+
+    it 'should build filters from string' do
+      uri = URI::QueryParams.filters("age = 18")
+      expect(uri).to eq "age%3A%3Aeq%2818%29"
+    end
+
+    it 'should build filters from array' do
+      uri = URI::QueryParams.filters(["age >= 18", "age <= 21"])
+      expect(uri).to eq "age%3A%3Age%2818%29%7Cage%3A%3Ale%2821%29"
+    end
   end
 end
