@@ -51,7 +51,7 @@ module URI
     end
 
     def build_filters()
-      ERB::Util.url_encode(@params.join("|"))
+      @params.join("|")
     end
   end
 end

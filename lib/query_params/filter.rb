@@ -1,7 +1,7 @@
 module Filter
   
   def full_text_search(query)
-    @query = "q=#{ERB::Util.url_encode(query.strip)}"
+    @query = "q=#{query.strip}"
   end
 
   def q(query)

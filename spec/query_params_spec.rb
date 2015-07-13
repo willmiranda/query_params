@@ -10,17 +10,17 @@ describe QueryParams do
 
     it 'with equal' do
       subject.equal("name", "James Rodrigues")
-      expect(output).to eq "#{base_uri}?filters=name%3A%3Aeq%28James%20Rodrigues%29"
+      expect(output).to eq "#{base_uri}?filters=name::eq(James Rodrigues)"
     end
 
     it 'with greater and equal' do
       subject.greater_and_equal("age", "10")
-      expect(output).to eq "#{base_uri}?filters=age%3A%3Age%2810%29"
+      expect(output).to eq "#{base_uri}?filters=age::ge(10)"
     end
 
     it 'with less and equal' do
       subject.less_and_equal("age", "59")
-      expect(output).to eq "#{base_uri}?filters=age%3A%3Ale%2859%29"
+      expect(output).to eq "#{base_uri}?filters=age::le(59)"
     end
 
     it 'empty string' do
@@ -29,37 +29,37 @@ describe QueryParams do
 
     it 'from hash' do
       uri = URI::QueryParams.build_uri(base_uri: base_uri, filters: ["name  =  James Rodrigues", "age >= 10"])
-      expect(uri).to eq "#{base_uri}?filters=name%3A%3Aeq%28James%20Rodrigues%29%7Cage%3A%3Age%2810%29"
+      expect(uri).to eq "#{base_uri}?filters=name::eq(James Rodrigues)|age::ge(10)"
     end
 
     it 'from hash with all operators' do
       uri = URI::QueryParams.build_uri(base_uri: base_uri, filters: ["a = 1", "b <= 1", "c >= 1"])
-      expect(uri).to eq "#{base_uri}?filters=a%3A%3Aeq%281%29%7Cb%3A%3Ale%281%29%7Cc%3A%3Age%281%29"
+      expect(uri).to eq "#{base_uri}?filters=a::eq(1)|b::le(1)|c::ge(1)"
     end
 
     it 'from simple condition' do
       uri = URI::QueryParams.build_uri(base_uri: base_uri, filters: "name  =  James Rodrigues")
-      expect(uri).to eq "#{base_uri}?filters=name%3A%3Aeq%28James%20Rodrigues%29"
+      expect(uri).to eq "#{base_uri}?filters=name::eq(James Rodrigues)"
     end
 
     it 'from without base_uri' do
       uri = URI::QueryParams.build_uri(filters: "name = James Rodrigues")
-      expect(uri).to eq "filters=name%3A%3Aeq%28James%20Rodrigues%29"
+      expect(uri).to eq "filters=name::eq(James Rodrigues)"
     end
 
     it 'with simple quote in condition' do
       uri = URI::QueryParams.build_uri(filters: 'name = "Jame\'s Rodrigues"')
-      expect(uri).to eq "filters=name%3A%3Aeq%28James%20Rodrigues%29"
+      expect(uri).to eq "filters=name::eq(James Rodrigues)"
     end
 
     it 'with double quote in condition' do
       uri = URI::QueryParams.build_uri(filters: "name = 'James Rodrigues'")
-      expect(uri).to eq "filters=name%3A%3Aeq%28James%20Rodrigues%29"
+      expect(uri).to eq "filters=name::eq(James Rodrigues)"
     end
 
     it 'should encode URL' do
       uri = URI::QueryParams.build_uri(filters: "desc = Programming Ruby: The Pragmatic Programmer's Guide")
-      expect(uri).to eq "filters=desc%3A%3Aeq%28Programming%20Ruby%3A%20The%20Pragmatic%20Programmers%20Guide%29"
+      expect(uri).to eq "filters=desc::eq(Programming Ruby: The Pragmatic Programmers Guide)"
     end
 
     it 'invalid operator' do
@@ -86,12 +86,12 @@ describe QueryParams do
 
     it 'should build filters from string' do
       uri = URI::QueryParams.filters("age = 18")
-      expect(uri).to eq "age%3A%3Aeq%2818%29"
+      expect(uri).to eq "age::eq(18)"
     end
 
     it 'should build filters from array' do
       uri = URI::QueryParams.filters(["age >= 18", "age <= 21"])
-      expect(uri).to eq "age%3A%3Age%2818%29%7Cage%3A%3Ale%2821%29"
+      expect(uri).to eq "age::ge(18)|age::le(21)"
     end
   end
 end
