@@ -93,5 +93,10 @@ describe QueryParams do
       uri = URI::QueryParams.filters(["age >= 18", "age <= 21"])
       expect(uri).to eq "age::ge(18)|age::le(21)"
     end
+
+    it 'should build filter with between' do
+      uri = URI::QueryParams.filters(["age BETWEEN 18 AND 21"])
+      expect(uri).to eq "age::bt(18,21)"
+    end
   end
 end
