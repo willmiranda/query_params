@@ -38,7 +38,7 @@ URI::QueryParams.build_uri(base_uri: "http://domain.com/search", q: "Mark", filt
 
 ## Contributing
 
-1. Fork it ( https://github.com/willmiranda/query-params/fork )
+1. Fork it ( https://github.com/willmiranda/query_params/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

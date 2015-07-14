@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Format URL parameters like a query.}
   spec.description   = %q{It allows you to send operators and the same parameter twice on the same request.}
-  spec.homepage      = "https://github.com/willmiranda/query-params"
+  spec.homepage      = "https://github.com/willmiranda/query_params"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
