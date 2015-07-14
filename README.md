@@ -13,7 +13,7 @@ http://domain.com/search?filters=age::ge(18)|age::le(25)
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'query-params'
+gem 'query_params'
 ```
 
 And then execute:
@@ -22,18 +22,18 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install query-params
+    $ gem install query_params
 
 ## Usage
 
 ```ruby
-# Complete URI
-URI::QueryParams.build_uri(base_uri: "http://domain.com/search", q: "Mark", filters: ["age <= 18", "type = 1"])
-# => "http://domain.com/search?q=Mark&filters=age::le(18)|type::eq(1)"
-
 # Only query params
 URI::QueryParams.filters(filters: ["age <= 18", "type = 1"])
 # => "age::le(18)|type::eq(1)"
+
+# Complete URI
+URI::QueryParams.build_uri(base_uri: "http://domain.com/search", q: "Mark", filters: ["age <= 18", "type = 1"])
+# => "http://domain.com/search?q=Mark&filters=age::le(18)|type::eq(1)"
 ```
 
 ## Contributing
