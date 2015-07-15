@@ -80,8 +80,9 @@ describe QueryParams do
     end
 
     it 'filters is required' do
-      expect{ URI::QueryParams.filters("") }.to raise_error(ArgumentError)
-      expect{ URI::QueryParams.filters(nil) }.to raise_error(ArgumentError)
+      expect(URI::QueryParams.filters("")).to eq ""
+      expect(URI::QueryParams.filters(nil)).to eq ""
+      expect(URI::QueryParams.filters([])).to eq ""
     end
 
     it 'should build filters from string' do

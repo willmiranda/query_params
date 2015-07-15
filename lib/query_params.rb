@@ -42,9 +42,8 @@ module URI
     end
 
     def self.filters(filters)
-      if filters.nil? || filters.empty?
-        raise(ArgumentError, "Missing required parameter filters. Example: ['age >= 18']")
-      end
+      return "" if filters.nil? || filters.empty?
+
       queryParams = QueryParams.new()
       queryParams.set_conditions(filters)
       queryParams.build_filters()
