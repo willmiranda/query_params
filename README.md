@@ -28,8 +28,8 @@ Or install it yourself as:
 
 ```ruby
 # Only query params
-URI::QueryParams.filters(filters: ["type = 1", "height <= 1.8", "age between 18 and 21"])
-# => "type::eq(1)|height::le(1.8)|age::bt(18,21)"
+URI::QueryParams.filters(filters: ["type = 1", "height <= 2", "age between 18 and 21"], "status in(1,3,5)")
+# => "type::eq(1)|height::le(2)|age::bt(18,21)|status::in(1,3,5)"
 
 # Complete URI
 URI::QueryParams.build_uri(base_uri: "http://domain.com/search", q: "Mark", filters: ["age <= 18"])

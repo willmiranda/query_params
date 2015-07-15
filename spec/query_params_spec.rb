@@ -98,5 +98,10 @@ describe QueryParams do
       uri = URI::QueryParams.filters(["age BETWEEN 18 AND 21"])
       expect(uri).to eq "age::bt(18,21)"
     end
+
+    it 'should build filter with clausule in' do
+      uri = URI::QueryParams.filters(["code IN(1,3,5)"])
+      expect(uri).to eq "code::in(1,3,5)"
+    end
   end
 end

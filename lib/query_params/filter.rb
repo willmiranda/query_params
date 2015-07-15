@@ -20,6 +20,10 @@ module Filter
     equal(key, value)
   end
 
+  def in(key, values)
+    @params.push("#{key}::in(#{values.join(",")})")
+  end
+
   def greater_and_equal(key, value)
     @params.push("#{key}::ge(#{value})")
   end
